@@ -2,26 +2,26 @@ const database = require("./database-connection");
 
 module.exports = {
     list() {
-        return database('camper')
+        return database('campers')
     },
     read(id) {
-        return database('camper')
+        return database('campers')
             .where('id', id)
     },
-    create(camper) {
-        return database('camper')
-            .insert(camper)
+    create(campers) {
+        return database('campers')
+            .insert(campers)
             .returning('*')
             .then(record => record[0])
     },
-    update(id, camper) {
-        return database('camper')
-        update(camper)
+    update(id, campers) {
+        return database('campers')
+        update(campers)
             .where('id', id)
             .returning('*')
     },
     delete(id) {
-        return database('camper')
+        return database('campers')
             .where('id', id)
             .del()
     }

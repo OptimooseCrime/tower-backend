@@ -1,29 +1,29 @@
 const express = require("express")
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
-const server = express()
+const app = express()
 const campers = require('./routes/campers')
 
-server.use(morgan('dev'))
-server.use(bodyParser.json())
+app.use(morgan('dev'))
+app.use(bodyParser.json())
 
-server.use('/campers', campers)
+app.use('/campers', campers)
 
 //catch 404 and fwd to error handler
-server.use((req, res, next) => {
+app.use((req, res, next) => {
     const err = new Error('Sorry, not found')
     err.status = 404
     next(err)
 })
 
 // error handler
-server.use((err, rew, res, next) => {
+app.use((err, req, res, next) => {
     res
     .status(err.status || 500)
     .json({
         message:err.message,
-        error: req.server.get('env')=== 'development' ? err.stack : {}
+        error: req.app.get('env')=== 'development' ? err.stack : {}
     })
 })
 
-module.export = server
+module.exports = app
