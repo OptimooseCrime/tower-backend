@@ -7,7 +7,7 @@ const cors = require("cors")
 
 app.use(morgan('dev'))
 app.use(bodyParser.json())
-app.use(cors)
+app.use(cors())
 app.use('/campers', campers)
 
 //catch 404 and fwd to error handler
