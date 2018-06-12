@@ -1,9 +1,9 @@
 exports.seed = function (knex, Promise) {
   // Deletes ALL existing entries
-  return knex('campers').del()
+    return knex.raw('DELETE FROM "campers"; ALTER SEQUENCE campers_id_seq RESTART WITH 3;')
     .then(function () {
       // Inserts seed entries
-      return knex('campers').insert(
+      let campers =
         [{
             id: 1,
             username: 'XxSuper420GamerXx',
@@ -20,6 +20,6 @@ exports.seed = function (knex, Promise) {
             bio: '"Tent camping in the sand dunes, and waking up early to ride my dirt bike. #braplife"'
           }
         ]
-      );
+        return knex('campers').insert(campers)
     });
 };

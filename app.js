@@ -10,7 +10,7 @@ app.use(bodyParser.json())
 app.use(cors())
 app.use('/campers', campers)
 
-//catch 404 and fwd to error handler
+//catch 404 
 app.use((req, res, next) => {
     const err = new Error('Sorry, not found')
     err.status = 404
